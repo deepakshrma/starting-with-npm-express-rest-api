@@ -7,6 +7,7 @@ mongoose.connect('mongodb://localhost:27017/expressDB'); // connect to our datab
 
 
 var Users     = require('./users');
+var Books     = require('./books');
 
 // call the packages we need
 var express    = require('express'); 		// call express
@@ -56,6 +57,23 @@ router.route('/users/:user_id')
     .put(Users.updateUser)
     // delete the user with this id (accessed at DELETE http://localhost:8080/api/users/:user_id)
     .delete(Users.deleteUser);
+
+// on routes that end in /books
+// ----------------------------------------------------
+router.route('/books')
+
+    // create a book (accessed at POST http://localhost:8080/api/books)
+    .post(Books.addBook)
+    // get all the books (accessed at GET http://localhost:8080/api/books)
+    .get(Books.findAll);
+router.route('/books/:book_id')
+
+    // get the book with that id (accessed at GET http://localhost:8080/api/books/:book_id)
+    .get(Books.findById)
+    // update the book with this id (accessed at PUT http://localhost:8080/api/books/:book_id)
+    .put(Books.updateBook)
+    // delete the book with this id (accessed at DELETE http://localhost:8080/api/books/:book_id)
+    .delete(Books.deleteBook);
 // REGISTER OUR ROUTES -------------------------------
 // all of our routes will be prefixed with /api
 app.use('/api', router);

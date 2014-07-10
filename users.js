@@ -9,7 +9,8 @@ var userObject ={
     id: String,
     name: String,
     team: String,
-    info: String
+    info: String,
+    role: String
 };
 var UsersSchema   = new Schema(userObject);
 
