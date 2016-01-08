@@ -78,4 +78,7 @@ com_crashlytics_export_strings.xml
 crashlytics.properties
 crashlytics-build.properties
 
+npm-examples/node_modules
+.idea
+
 
