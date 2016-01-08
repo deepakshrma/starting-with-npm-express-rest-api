@@ -1,3 +1,24 @@
+#Starting with npm: 
+##Agenda: 
+1.  Introduction
+2.  Install || update npm
+3.  Concept of package(package.json)
+4.  Install a global package
+5.  Exposure of some module(async, underscore, request, nodemailer)
+6.  Exercises on npm
+
+#Starting with ExpressJs: 
+##Agenda: 
+1.  Understanding of project structure
+ 
+#Advanced npm(your own npm module): 
+##Agenda: 
+1.  Modular design pattern
+2.  Create your own module
+3.  Publish your own module
+4.  Scripting with npm
+
+
 expressModDemo
 ==============
 
