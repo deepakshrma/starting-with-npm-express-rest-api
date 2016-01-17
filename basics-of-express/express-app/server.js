@@ -6,12 +6,23 @@ var app = Express();
 //require router module
 var router = require('./router');
 var userRouter = require('./router/users');
-function middleware(req, res, next) {
-    console.info('inside middleware');
-    //do something with req, call next once done
+
+//logging middleware
+function logger(req, res, next) {
+    var startDate = Date.now();
+    res.on("finish", function () {
+        // some code to be executed after another middleware
+        // does some stuff
+        var statusCode = res.statusCode;
+        var status = (statusCode > 100 && statusCode < 400)
+            ? 'OK' : (statusCode > 400 && statusCode < 500)
+            ? 'BAD REQUEST' : "ERROR";
+        console.info("%d %s %s", statusCode, status, req.url);
+    });
     next()
 }
-app.use(middleware);
+//how to use it
+app.use(logger);
 //add static server
 app.use('/static', Express.static('views'));
 
