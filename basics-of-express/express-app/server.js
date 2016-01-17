@@ -6,7 +6,12 @@ var app = Express();
 //require router module
 var router = require('./router');
 var userRouter = require('./router/users');
-
+function middleware(req, res, next) {
+    console.info('inside middleware');
+    //do something with req, call next once done
+    next()
+}
+app.use(middleware);
 //add static server
 app.use('/static', Express.static('views'));
 

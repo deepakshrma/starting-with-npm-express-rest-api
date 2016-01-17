@@ -113,7 +113,8 @@ app.use('/static', Express.static('views'));
 //..
 //add routes
 ```
-##Basic routing- continue
+##Basic routing- continue...
+###Excersize on Basic routing- Create routes for /user
 ```js
 //router/users.js
 //"use strict";
@@ -146,4 +147,4 @@ userRouter(app);
 app.listen(PORT, function () {
 });
 ```
-
+#Middleware in express
