@@ -27,7 +27,8 @@ $ npm i express --save
 #package.json
 "dependencies":
   {
-    "express": "~4.0.0"
+    "express": "~4.0.0",
+    "ejs":"~1.0.0"
 }
 ```
 ```bash
@@ -255,5 +256,16 @@ $ npm i express-generator -g
 ```bash
 $ express express-gapp
 ```
-
-
+##Exercise- using ejs render Dashboard and About.Me HTML page
+*Note:*  
+Create own html page or use
+basics-of-express/express-app/public/about.html
+basics-of-express/express-app/public/dashboard.html
+*Need to know:*  
+```js
+app.set('views', __dirname + '/public/');
+app.engine('html', require('ejs').renderFile);
+app.set('view engine', 'html');
+//And
+res.render(path.resolve('public', 'about.html'),{user: "Great User",title:"homepage"});
+```

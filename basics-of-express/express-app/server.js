@@ -22,6 +22,12 @@ app.use(logger);
 
 //add static server
 app.use('/static', Express.static('views'));
+app.use('/static', Express.static('public'));
+
+app.set('views', __dirname + '/public/');
+app.engine('html', require('ejs').renderFile);
+app.set('view engine', 'html');
+
 
 //require router module
 //add routes
