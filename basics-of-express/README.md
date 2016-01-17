@@ -260,8 +260,9 @@ $ express express-gapp
 *Note:*  
 Create own html page or use
 basics-of-express/express-app/public/about.html
-basics-of-express/express-app/public/dashboard.html
-*Need to know:*  
+basics-of-express/express-app/public/dashboard.html 
+
+*Need to know:* 
 ```js
 app.set('views', __dirname + '/public/');
 app.engine('html', require('ejs').renderFile);
