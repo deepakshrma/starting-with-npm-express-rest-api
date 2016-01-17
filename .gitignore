@@ -1,5 +1,4 @@
-todo
-*.sock
+# Created by .ignore support plugin (hsz.mobi)
 ### Node template
 # Logs
 logs
@@ -28,6 +27,15 @@ build/Release
 # Dependency directory
 # https://www.npmjs.org/doc/misc/npm-faq.html#should-i-check-my-node_modules-folder-into-git
 node_modules
+
+
+### Yeoman template
+node_modules/
+bower_components/
+*.log
+
+build/
+dist/
 
 
 ### JetBrains template
@@ -78,8 +86,5 @@ com_crashlytics_export_strings.xml
 crashlytics.properties
 crashlytics-build.properties
 
-npm-examples/node_modules
-.idea
-.idea/**
+
 .tmp
-**/node_modules
