@@ -246,3 +246,14 @@ module.exports = function (app) {
     app.use('/birds', router);
 };
 ```
+##Express Generator
+###Install
+```bash
+$ npm i express-generator -g
+```
+###Create gapp
+```bash
+$ express express-gapp
+```
+
+
