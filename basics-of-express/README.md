@@ -165,6 +165,7 @@ app.use('/static', Express.static('views'));
 ```
 ###Exercise- Create a request logging middleware 
 ```js
+//server.js
 //logging middleware
 function logger(req, res, next) {
     var startDate = Date.now();
@@ -182,4 +183,66 @@ function logger(req, res, next) {
 //how to use it
 app.use(logger);
 //add static server
+```
+##Error Handling
+```js
+//server.js
+userRouter(app);
+//error handling middleware
+//This should be after last app.use
+function errorHandler(err, req, res, next) {
+    console.info(err);
+    if (res.headersSent) {
+        return next(err);
+    }
+    res.status(500).send(err.message);
+}
+app.use(errorHandler);
+//route/index.js
+app.get('/error', function (req, res) {
+        throw new Error("Throwing error from /error");
+        res.send('This wil never reached');
+});
+```
+###For verification open 
+[Error link: http://localhost:3000/error](http://localhost:3000/error)
+
+##Routing in depth
+
+###Chainable Routing- app.route()
+```js
+//router/books.js
+app.route('/book')
+  .get(function(req, res) {
+    res.send('Get a random book');
+  })
+  .post(function(req, res) {
+    res.send('Add a book');
+  })
+  .put(function(req, res) {
+    res.send('Update the book');
+  });
+```
+###Express Router- express.Router()
+```js
+//router/birds.js
+"use strict";
+var express = require('express');
+var router = express.Router();
+// middleware that is specific to this router
+router.use(function timeLog(req, res, next) {
+    console.log('Time: ', Date.now());
+    next();
+});
+// define the home page route
+router.get('/', function (req, res) {
+    res.send('Birds home page');
+});
+// define the about route
+router.get('/about', function (req, res) {
+    res.send('About birds');
+});
+module.exports = function (app) {
+    app.use('/birds', router);
+};
 ```

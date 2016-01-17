@@ -19,4 +19,8 @@ module.exports = function (app) {
             .createReadStream(path.resolve('views', 'index.html'))
             .pipe(res);
     });
+    app.get('/error', function (req, res) {
+        throw new Error("Throwing error from /error");
+        res.send('This wil never reached');
+    });
 }

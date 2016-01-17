@@ -3,10 +3,6 @@
 var Express = require('express');
 var PORT = 3000;
 var app = Express();
-//require router module
-var router = require('./router');
-var userRouter = require('./router/users');
-
 //logging middleware
 function logger(req, res, next) {
     var startDate = Date.now();
@@ -23,12 +19,25 @@ function logger(req, res, next) {
 }
 //how to use it
 app.use(logger);
+
 //add static server
 app.use('/static', Express.static('views'));
 
+//require router module
 //add routes
-router(app);
-userRouter(app);
+require('./router')(app);
+require('./router/users')(app);
+require('./router/birds')(app);
+require('./router/books')(app);
+//error handling middleware
+function errorHandler(err, req, res, next) {
+    console.info(err);
+    if (res.headersSent) {
+        return next(err);
+    }
+    res.status(500).send(err.message);
+}
+app.use(errorHandler);
 
 app.listen(PORT, function () {
     console.info("Server is running @:http://localhost:%d", PORT);
