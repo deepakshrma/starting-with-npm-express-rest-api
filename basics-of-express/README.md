@@ -27,9 +27,7 @@ $ npm i express --save
 #package.json
 "dependencies":
   {
-    "express": "~4.0.0",
-    "mysql": "*",
-    "ejs": "~1.0.0"
+    "express": "~4.0.0"
 }
 ```
 ```bash
@@ -79,26 +77,23 @@ module.exports = function (app) {
         ]));
     });
 }
+//server.js
+//require router module
+var router = require('./router'); 
+//add routes
+router(app);
 ```
+
 ##Create HTML file
 ```html
-<--! Zen coding --> 
+<-- Zen coding --!> 
 html:5>body>div.content>span.title
 ```
 ##Routing module- Send file
 ```js
 //router/index.js
 module.exports = function (app) {
-    app.get('/', function (req, res) {
-        res.send('Hello World!');
-    });
-    app.get('/users.json', function (req, res) {
-        res.send(JSON.stringify([
-            {name: 'Deepak', id: 1},
-            {name: 'Nama', id: 2},
-            {name: 'Nikhil', id: 3}
-        ]));
-    });
+    //...
     app.get('/', function (req, res) {
             // maybe test for existence here using fs.stat
             res.writeHead(200, {"Content-Type": "text/html"});
@@ -108,3 +103,47 @@ module.exports = function (app) {
         });
 }
 ```
+##Your own tomcat(public server)
+```js
+//server.js
+var router = require('./router');
+//..
+//add static server
+app.use('/static', Express.static('views'));
+//..
+//add routes
+```
+##Basic routing- continue
+```js
+//router/users.js
+//"use strict";
+module.exports = function (app) {
+    app.get('/user', function (req, res) {
+        res.send(JSON.stringify([
+            {name: 'Deepak', id: 1},
+            {name: 'Nama', id: 2},
+            {name: 'Nikhil', id: 3}
+        ]));
+    });
+    app.post('/user', function (req, res) {
+        res.send('Got a POST request');
+    });
+    app.put('/user', function (req, res) {
+        res.send('Got a PUT request at /user');
+    });
+    app.delete('/user', function (req, res) {
+        res.send('Got a DELETE request at /user');
+    });
+}
+//server.js
+var router = require('./router');
+//...require new routes
+var userRouter = require('./router/users');
+router(app);
+//...ad user routes
+userRouter(app);
+//...
+app.listen(PORT, function () {
+});
+```
+
