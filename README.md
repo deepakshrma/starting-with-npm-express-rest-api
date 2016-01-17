@@ -12,7 +12,7 @@
 ###Agenda: 
 1.  Understanding of project structure
 2.  Creating Express Server(Hello.World!)
-3.  Stating with express-generator
+3.  Starting with express-generator
 4.  Basic routing(Exposure to REST)
 5.  Your own tomcat(public server)
 6.  Routing in depth

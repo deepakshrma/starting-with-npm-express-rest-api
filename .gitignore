@@ -80,5 +80,6 @@ crashlytics-build.properties
 
 npm-examples/node_modules
 .idea
-
-
+.idea/**
+.tmp
+**/node_modules
